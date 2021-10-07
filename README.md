@@ -1,3 +1,3 @@
-# 3d-representation-learning.github.io
+# Language Model Pre-training Improves Generalization in Policy Learning
 
-https://3d-representation-learning.github.io/nerf-dy/
+https://shuangli-project.github.io/Language-Model-Pre-training-Improves-Generalization-in-Policy-Learning/
