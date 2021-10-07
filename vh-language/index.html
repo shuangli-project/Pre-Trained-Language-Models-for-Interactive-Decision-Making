@@ -1,0 +1,212 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111713571-1"></script>
+	<script>
+  		window.dataLayer = window.dataLayer || [];
+  		function gtag(){dataLayer.push(arguments);}
+  		gtag('js', new Date());
+  		gtag('config', 'UA-111713571-1');
+	</script>
+
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<!-- Custom styles for this template -->
+	<link href="files/jumbotron.css" rel="stylesheet">
+</head>
+
+<title>vh-language</title>
+
+<body>
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+		<a class="navbar-brand" href="#">Language Model Pre-training Improves Generalization in Policy Learning</a>
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
+	  		<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarToggle">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="#">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#Abstract">Abstract</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#Paper">Paper</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#Results">Results</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#Model">Model</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container" style="padding-top: 80px; font-size: 20px">
+		<div align="center">
+			<h2 class="text-center" align="center">
+				Language Model Pre-training Improves Generalization in Policy Learning
+			</h2><br>
+
+			<a href="https://people.csail.mit.edu/lishuang/">Shuang Li<sup>1</sup></a> &nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="https://people.csail.mit.edu/xavierpuig/">Xavier Puig<sup>1</sup></a> &nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="https://yilundu.github.io/">Yilun Du<sup>1</sup></a> &nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="https://www.ekinakyurek.me/">Ekin Akyürek<sup>1</sup></a> &nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="http://web.mit.edu/torralba/www/">Antonio Torralba<sup>1</sup></a> &nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="https://www.mit.edu/~jda/">Jacob Andreas<sup>1</sup></a> &nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="https://scholar.google.com/citations?user=Vzr1RukAAAAJ&hl=en">Igor Mordatch<sup>2</sup></a> <br><br>
+
+			<a><b><sup>1</sup>MIT CSAIL</b></a> &nbsp;&nbsp;&nbsp;&nbsp;
+			<a><b><sup>2</sup>Google Brain</b></a><br>
+
+			<!-- <a href="https://www.csail.mit.edu/"><b><sup>1</sup>MIT CSAIL</b></a><br> -->
+			<!-- <small>(* indicate equal contribution)</small> -->
+
+		</div>
+	</div><br>
+
+
+	<br><br><br><br>
+	
+	<div class="container" style="padding-top: 20px; font-size: 20px">
+		<div align="center">
+		<div class="center">
+			<img class="img-responsive img-rounded" src="imgs/qualitative2.png" style="width:90%; height:100%" alt="">
+		</div>
+		</div>
+	</div><br><br>
+
+	<br><br>
+
+
+	<!-- Abstract -->
+	<div class="container">
+		<h3 id="Abstract" style="padding-top: 80px; margin-top: -80px;">Abstract</h3>
+		Language model (LM) pre-training has proven useful for a wide variety of language processing tasks, including tasks that require nontrivial planning and reasoning capabilities. Can these capabilities be leveraged for more general machine learning problems? We investigate the effectiveness of LM pretraining to scaffold learning and generalization in autonomous decision-making. We use a pre-trained GPT-2 LM to initialize an interactive policy, which we fine-tune via imitation learning to perform interactive tasks in a simulated household environment featuring partial observability, large action spaces, and long time horizons. To leverage pre-training, we first encode observations, goals, and history information as templated English strings, and train the policy to predict the next action. We find that this form of pre-training enables generalization in policy learning: for test tasks involving novel goals or environment states, initializing policies with language models improves task completion rates by nearly 20\%. Additional experiments explore the role of language-based encodings in these results; we find that it is possible to train a simple adapter layer that maps from observations and action histories to LM embeddings, and thus that language modeling provides an effective initializer even for tasks with no language as input or output. Together, these results suggest that language modeling induces representations that are useful for modeling not just language, but natural goals and plans; these representations can aid learning and generalization even outside of language processing.
+	</div><br><br>
+
+	<!-- Paper -->
+	<div class="container">
+		<h3 id="Paper" style="padding-top: 80px; margin-top: -80px;">Paper</h3>
+
+		<div class="row">
+			<div class="col-md-12">
+			<a href="https://people.csail.mit.edu/lishuang/">Shuang Li<sup>1</sup></a>,
+			<a href="https://people.csail.mit.edu/xavierpuig/">Xavier Puig<sup>1</sup></a>,
+			<a href="https://yilundu.github.io/">Yilun Du<sup>1</sup></a>,
+			<a href="https://www.ekinakyurek.me/">Ekin Akyürek<sup>1</sup></a>,
+			<a href="http://web.mit.edu/torralba/www/">Antonio Torralba<sup>1</sup></a>,
+			<a href="https://www.mit.edu/~jda/">Jacob Andreas<sup>1</sup></a>, and
+			<a href="https://scholar.google.com/citations?user=Vzr1RukAAAAJ&hl=en">Igor Mordatch<sup>2</sup></a><br>
+
+			<b>Language Model Pre-training Improves Generalization in Policy Learning</b><br>
+
+			<b>arxiv 2021</b> 
+			<a href="">[Paper]</a>
+			<a href="paper.bib" target="_blank">[BibTex]</a><br>
+
+			<!-- (* indicate equal contribution) -->
+
+			</div>
+		</div>
+	</div><br><br>
+
+	<!-- Video -->
+	<div class="container">
+		<h3 id="Results" style="padding-top: 80px; margin-top: -80px;">Qualitative Results</h3><br>
+
+		<div align="left">
+			<h4 style="padding-top: 80px; margin-top: -80px;">1. Policies with pretrained language model on different test settings</h4>
+		  	<div class="embed-responsive embed-responsive-16by9">
+		    <iframe style="border: 1px solid #000;" class="embed-responsive-item" src="https://www.youtube.com/embed/z3FY8JriGB0" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div><br><br>
+
+		<div align="left">
+			<h4 style="padding-top: 80px; margin-top: -80px;">2. Policy trained from scratch v.s. Policy with pretrained language model</h4>
+		  <div class="embed-responsive embed-responsive-16by9">
+		    <iframe style="border: 1px solid #000;" class="embed-responsive-item" src="https://www.youtube.com/embed/ORWx0mNmrMs" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div><br><br>
+
+		<div align="left">
+			<h4 style="padding-top: 80px; margin-top: -80px;">3. Policy with LSTM v.s. Policy with pretrained language model</h4>
+		  <div class="embed-responsive embed-responsive-16by9">
+		    <iframe style="border: 1px solid #000;" class="embed-responsive-item" src="https://www.youtube.com/embed/F9XvOAKDkXo" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div><br><br>
+
+
+
+	</div><br><br><br>
+
+
+	<div class="container">
+		<h3 id="Model" style="padding-top: 80px; margin-top: -80px;">Quantitative results</h3>
+		<br>
+
+		<h4 style="padding-top: 80px; margin-top: -80px;">1. Comparisons of the proposed method and baselines on different testing subsets</h4>
+		<br>
+	  	<img class="img-responsive img-rounded" src="imgs/0baselines.png" style="width:80%; height:100%" alt="">
+		<br><br><br>
+
+		<h4 style="padding-top: 80px; margin-top: -80px;">2. Comparisons of pre-trained languagemodels using natural and unnatural strings</h4>
+		<br>
+	  	<img class="img-responsive img-rounded" src="imgs/1random.png" style="width:50%; height:100%" alt="">
+	  	<br><br><br>
+
+		<h4 style="padding-top: 80px; margin-top: -80px;">3. Comparisons of pre-trained language en-codings and learned encodings</h4>
+		<br>
+	  	<img class="img-responsive img-rounded" src="imgs/2ablation.png" style="width:50%; height:100%" alt="">
+	</div><br>
+
+
+
+  	<div class="container">
+		<h3 id="Model" style="padding-top: 80px; margin-top: -80px;">Model Overview</h3>
+		<br>
+
+		<h4 style="padding-top: 80px; margin-top: -80px;">1. Overview of VirtualHome</h4>
+		<br>
+	  	<img class="img-responsive img-rounded" src="imgs/environment.png" style="width:100%; height:100%" alt="">
+		<br><br><br>
+
+		<h4 style="padding-top: 80px; margin-top: -80px;">2. Overview of the training procedure</h4>
+		<br>
+	  	<img class="img-responsive img-rounded" src="imgs/model3.png" style="width:100%; height:100%" alt="">
+		<br><br><br>
+	</div><br>
+
+
+
+	<div class="container">
+		<hr>
+		<center>
+			<footer>
+				<p>&copy; Massachusetts Institute of Technology 2021</p>
+			</footer>
+		</center>
+	</div>
+
+
+	<!-- Bootstrap core JavaScript -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+</body>
+
+<
+
