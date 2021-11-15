@@ -23,6 +23,23 @@
 	<link href="files/jumbotron.css" rel="stylesheet">
 </head>
 
+
+<style>
+.center2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.center3 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+</style>
+
+
 <title>vh-language</title>
 
 <body>
@@ -82,11 +99,16 @@
 	<!-- <br> -->
 	<!-- <br><br> -->
 	
+
+	
+
+
+	<!-- <img class="img-responsive img-rounded" src="imgs/teaser2.gif" style="width:100%; height:100%" alt=""> -->
 	<div class="container" style="padding-top: 20px; font-size: 20px">
-		<div align="center">
 		<div class="center">
-			<img class="img-responsive img-rounded" src="imgs/teaser2.gif" style="width:100%; height:100%" alt="">
-		</div>
+			<video width="1150" autoplay loop>
+			  <source src="imgs/teaser.mp4" type="video/mp4">
+			</video>
 		</div>
 	</div><br><br>
 
@@ -95,9 +117,12 @@
 
 	<!-- Abstract -->
 	<div class="container">
+		<hr class="my-4">
 		<h3 id="Abstract" style="padding-top: 80px; margin-top: -80px;">Abstract</h3>
 		Language model (LM) pre-training has proven useful for a wide variety of language processing tasks, including tasks that require nontrivial planning and reasoning capabilities. Can these capabilities be leveraged for more general machine learning problems? We investigate the effectiveness of LM pretraining to scaffold learning and generalization in autonomous decision-making. We use a pre-trained GPT-2 LM to initialize an interactive policy, which we fine-tune via imitation learning to perform interactive tasks in a simulated household environment featuring partial observability, large action spaces, and long time horizons. To leverage pre-training, we first encode observations, goals, and history information as templated English strings, and train the policy to predict the next action. We find that this form of pre-training enables generalization in policy learning: for test tasks involving novel goals or environment states, initializing policies with language models improves task completion rates by nearly 20\%. Additional experiments explore the role of language-based encodings in these results; we find that it is possible to train a simple adapter layer that maps from observations and action histories to LM embeddings, and thus that language modeling provides an effective initializer even for tasks with no language as input or output. Together, these results suggest that language modeling induces representations that are useful for modeling not just language, but natural goals and plans; these representations can aid learning and generalization even outside of language processing.
-	</div><br><br>
+	</div>
+	<br><br><br>
+
 
 	<!-- Paper -->
 	<div class="container">
@@ -123,26 +148,78 @@
 
 			</div>
 		</div>
-	</div><br><br>
+	</div>
+	<br><br>
+
+
+
+	<div class="container">
+		<hr class="my-4">
+		<h3 id="Model" style="padding-top: 80px; margin-top: -80px;">Quantitative results</h3>
+		<br>
+
+		<h4 style="padding-top: 80px; margin-top: -80px;">1. Comparisons of the proposed method and baselines on different testing subsets</h4>
+		<br>
+		<!-- <video width="1150" controls autoplay loop> -->
+
+		<video width="1100" controls poster="imgs/baselines1.jp2">
+			<source src="imgs/baselines1-4.mp4" type="video/mp4">
+		</video>	
+		<!-- <img class="center2" src="imgs/baselines1.png" style="width:80%; height:100%;" alt=""> -->
+		<br><br>
+
+		<hr class="my-4">
+		<h4 style="padding-top: 80px; margin-top: -80px;">2. Comparisons of pre-trained language models using natural and unnatural strings</h4>
+		<br>
+
+
+		<div class="center3">
+			<video width="850" controls poster="imgs/baselines2.jp2">
+				<source src="imgs/baselines2.mp4" type="video/mp4">
+			</video>
+		</div>
+
+	  	<!-- <img class="center2" src="imgs/1random.png" style="width:50%; height:100%" alt=""> -->
+	  	<br><br>
+
+	  	<hr class="my-4">
+		<h4 style="padding-top: 80px; margin-top: -80px;">3. Comparisons of pre-trained language encodings and learned encodings</h4>
+		<br>
+
+		<div class="center3">
+			<video width="850" controls poster="imgs/baselines3.jp2">
+				<source src="imgs/baselines3.mp4" type="video/mp4">
+			</video>
+		</div>
+
+	  	<!-- <img class="center2" src="imgs/2ablation.png" style="width:50%; height:100%" alt=""> -->
+	</div>
+	<br><br><br>
+
 
 	<!-- Video -->
 	<div class="container">
+		<hr class="my-4">
 		<h3 id="Results" style="padding-top: 80px; margin-top: -80px;">Qualitative Results</h3><br>
-
+		<br>
 		<div align="left">
 			<h4 style="padding-top: 80px; margin-top: -80px;">1. Policies with pretrained language model on different test settings</h4>
 		  	<div class="embed-responsive embed-responsive-16by9">
 		    <iframe style="border: 1px solid #000;" class="embed-responsive-item" src="https://www.youtube.com/embed/z3FY8JriGB0" frameborder="0" allowfullscreen></iframe>
 			</div>
-		</div><br><br>
+		</div>
+		<br><br><br>
 
+		<hr class="my-4">
 		<div align="left">
 			<h4 style="padding-top: 80px; margin-top: -80px;">2. Policy trained from scratch v.s. Policy with pretrained language model</h4>
 		  <div class="embed-responsive embed-responsive-16by9">
 		    <iframe style="border: 1px solid #000;" class="embed-responsive-item" src="https://www.youtube.com/embed/ORWx0mNmrMs" frameborder="0" allowfullscreen></iframe>
 			</div>
-		</div><br><br>
+		</div>
+		<br><br><br>
 
+		<hr class="my-4">
 		<div align="left">
 			<h4 style="padding-top: 80px; margin-top: -80px;">3. Policy with LSTM v.s. Policy with pretrained language model</h4>
 		  <div class="embed-responsive embed-responsive-16by9">
@@ -152,30 +229,12 @@
 
 
 
-	</div><br><br><br>
-
-
-	<div class="container">
-		<h3 id="Model" style="padding-top: 80px; margin-top: -80px;">Quantitative results</h3>
-		<br>
-
-		<h4 style="padding-top: 80px; margin-top: -80px;">1. Comparisons of the proposed method and baselines on different testing subsets</h4>
-		<br>
-	  	<img class="img-responsive img-rounded" src="imgs/0baselines.png" style="width:80%; height:100%" alt="">
-		<br><br><br>
-
-		<h4 style="padding-top: 80px; margin-top: -80px;">2. Comparisons of pre-trained languagemodels using natural and unnatural strings</h4>
-		<br>
-	  	<img class="img-responsive img-rounded" src="imgs/1random.png" style="width:50%; height:100%" alt="">
-	  	<br><br><br>
-
-		<h4 style="padding-top: 80px; margin-top: -80px;">3. Comparisons of pre-trained language en-codings and learned encodings</h4>
-		<br>
-	  	<img class="img-responsive img-rounded" src="imgs/2ablation.png" style="width:50%; height:100%" alt="">
-	</div><br>
+	</div>
+	<br><br><br><br>
 
 
 
+<!-- 
   	<div class="container">
 		<h3 id="Model" style="padding-top: 80px; margin-top: -80px;">Model Overview</h3>
 		<br>
@@ -189,8 +248,9 @@
 		<br>
 	  	<img class="img-responsive img-rounded" src="imgs/model3.png" style="width:100%; height:100%" alt="">
 		<br><br><br>
-	</div><br>
-
+	</div>
+	<br><br><br><br>
+ -->
 
 
 	<div class="container">
