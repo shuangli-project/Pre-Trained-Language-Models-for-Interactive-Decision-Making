@@ -173,7 +173,7 @@
 		<h3 id="Model" style="padding-top: 80px; margin-top: -80px;">Quantitative results</h3>
 		<br>
 
-		<h4 style="padding-top: 80px; margin-top: -80px;">Experiment 1. Can LMs be used to initialize policies if state and action information is presented to them in a format that looks, to the greatest extent possible, like a standard language modeling problem.</h4>
+		<h4 style="padding-top: 80px; margin-top: -80px;">Experiment 1. Can LMs be used to initialize policies if state and action information is presented in a format that looks like a standard language modeling problem.</h4>
 
 		To do so, we encode the inputs to the policy---including observations, goals, and action histories---as templated English phrases. 
 		<br><br>
@@ -181,7 +181,7 @@
 		<!-- Comparisons of the proposed method and baselines on different testing subsets. -->
 		"LM (ft) (Ours)" is the proposed model.
 		"MLP-N", "MLP-1", and "LSTM" are baselines without using transformer. "LM (scratch) w/o Hist" and "LM (ft) w/o Hist" are based on the transformer architecture but do not use history in the input for decision making. "LM (scratch)" and "LM (ft) (Ours)" are based transformer and uses history in the input. The "scratch" means the transformer is trained from scratch on our data while "ft" means the transformer is pre-trained on language tasks and then fine-tuned on our data.
-		Each experiment is performed 25 times with different random seeds. The averaged results are reported.
+		<!-- Each experiment is performed 25 times with different random seeds. The averaged results are reported. -->
 
 		<!-- <video width="1150" controls autoplay loop> -->
 		<video width="1100" controls poster="imgs/baselines1.png">
