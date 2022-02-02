@@ -44,7 +44,7 @@
 
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-		<a class="navbar-brand" href="#">Language Model Pre-training Improves Generalization in Policy Learning</a>
+		<a class="navbar-brand" href="#">Pre-Trained Language Models for Interactive Decision-Making</a>
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
 	  		<span class="navbar-toggler-icon"></span>
@@ -74,13 +74,14 @@
 	<div class="container" style="padding-top: 80px; font-size: 20px">
 		<div align="center">
 			<h2 class="text-center" align="center">
-				Language Model Pre-training Improves Generalization in Policy Learning
+				Pre-Trained Language Models for Interactive Decision-Making
 			</h2><br>
 
 			<a href="https://people.csail.mit.edu/lishuang/">Shuang Li<sup>1</sup></a> &nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="https://people.csail.mit.edu/xavierpuig/">Xavier Puig<sup>1</sup></a> &nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="https://yilundu.github.io/">Yilun Du<sup>1</sup></a> &nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="https://www.ekinakyurek.me/">Ekin Akyürek<sup>1</sup></a> &nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="https://clintonjwang.github.io/">Clinton Wang<sup>1</sup></a> &nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="https://www.ekinakyurek.me/">Ekin Akyürek<sup>1</sup></a> &nbsp;&nbsp;&nbsp;&nbsp; <br>
 			<a href="http://web.mit.edu/torralba/www/">Antonio Torralba<sup>1</sup></a> &nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="https://www.mit.edu/~jda/">Jacob Andreas<sup>1</sup></a> &nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="https://scholar.google.com/citations?user=Vzr1RukAAAAJ&hl=en">Igor Mordatch<sup>2</sup></a> 
@@ -118,7 +119,7 @@
 	<div class="container">
 		<hr class="my-4">
 		<h3 id="Abstract" style="padding-top: 80px; margin-top: -80px;">Abstract</h3>
-		Language model (LM) pre-training has proven useful for a wide variety of language processing tasks, including tasks that require nontrivial planning and reasoning capabilities. Can these capabilities be leveraged for more general machine learning problems? We investigate the effectiveness of LM pretraining to scaffold learning and generalization in autonomous decision-making. We use a pre-trained GPT-2 LM to initialize an interactive policy, which we fine-tune via imitation learning to perform interactive tasks in a simulated household environment featuring partial observability, large action spaces, and long time horizons. To leverage pre-training, we first encode observations, goals, and history information as templated English strings, and train the policy to predict the next action. We find that this form of pre-training enables generalization in policy learning: for test tasks involving novel goals or environment states, initializing policies with language models improves task completion rates by nearly 20%. Additional experiments explore the role of language-based encodings in these results; we find that it is possible to train a simple adapter layer that maps from observations and action histories to LM embeddings, and thus that language modeling provides an effective initializer even for tasks with no language as input or output. Together, these results suggest that language modeling induces representations that are useful for modeling not just language, but natural goals and plans; these representations can aid learning and generalization even outside of language processing.
+		Language model (LM) pre-training has proven useful for a wide variety of language processing tasks, but can such pre-training be leveraged for more general machine learning problems? We investigate the effectiveness of language modeling to scaffold learning and generalization in autonomous decision-making. We describe a framework for imitation learning in which goals and observations are represented as a sequence of embeddings, and translated into actions using a policy network initialized with a pre-trained transformer LM. We demonstrate that this framework enables effective combinatorial generalization across different environments, such as VirtualHome and BabyAI. In particular, for test tasks involving novel goals or novel scenes, initializing policies with language models improves task completion rates by 43.6% in VirtualHome. We hypothesize and investigate three possible factors underlying the effectiveness of LM-based policy initialization. We find that sequential representations (vs. fixed-dimensional feature vectors) and the LM objective (not just the transformer architecture) are both important for generalization. Surprisingly, however, the format of the policy inputs encoding (e.g. as a natural language string vs. an arbitrary sequential encoding) has little influence. Together, these results suggest that language modeling induces representations that are useful for modeling not just language, but also goals and plans; these representations can aid learning and generalization even outside of language processing.
 	</div>
 	<br><br>
 	
@@ -136,16 +137,17 @@
 			<a href="https://people.csail.mit.edu/lishuang/">Shuang Li</a>,
 			<a href="https://people.csail.mit.edu/xavierpuig/">Xavier Puig</a>,
 			<a href="https://yilundu.github.io/">Yilun Du</a>,
+			<a href="https://clintonjwang.github.io/">Clinton Wang</a>,
 			<a href="https://www.ekinakyurek.me/">Ekin Akyürek</a>,
 			<a href="http://web.mit.edu/torralba/www/">Antonio Torralba</a>,
 			<a href="https://www.mit.edu/~jda/">Jacob Andreas</a>, and
 			<a href="https://scholar.google.com/citations?user=Vzr1RukAAAAJ&hl=en">Igor Mordatch</a><br>
 
-			<b>Language Model Pre-training Improves Generalization in Policy Learning</b><br>
+			<b>Pre-Trained Language Models for Interactive Decision-Making</b><br>
 
-			<b>arxiv 2021</b> 
+			<b>arxiv 2022</b> 
 			<a href="">[Paper]</a>
-			<a href="https://github.com/ShuangLI59/Language-Model-Pre-training-Improves-Generalization-in-Policy-Learning">[Code]</a>
+			<a href="https://github.com/ShuangLI59/Pre-Trained-Language-Models-for-Interactive-Decision-Making">[Code]</a>
 			<a href="paper.bib" target="_blank">[BibTex]</a><br>
 
 			</div>
