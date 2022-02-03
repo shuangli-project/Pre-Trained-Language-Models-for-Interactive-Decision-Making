@@ -245,19 +245,19 @@
 		<div class="center2">
 			<img class="img-responsive img-rounded" src="imgs_new/table2.png" style="width:80%; height:100%" alt="">
 		</div>
-		Success rate of policies trained with text encoding vs. convolutional encoding in BabyAI.} The text encoding is more sample-efficient, but both models converge to near perfect performance given sufficient training data.
+		Success rate of policies trained with text encoding vs. convolutional encoding in BabyAI. The text encoding is more sample-efficient, but both models converge to near perfect performance given sufficient training data.
 
 		
 		<br><br>
 
 		<h4 style="padding-top: 80px; margin-top: -80px;">(2) Sequential input representations</h4>
-		We investigate (2) by encoding observations with a single vector embedding, thereby removing its sequential structure. This operation significantly hurts the model's performance on novel tasks.
+		We investigate (2) by encoding observations with a single vector embedding, thereby removing its sequential structure (No-Seq). This operation significantly hurts the model's performance on novel tasks.
 
 		
 		<br><br>
 
 		<h4 style="padding-top: 80px; margin-top: -80px;">(3) Parameter pre-training</h4>
-		Finally, we investigate (3) by learning the parameters of the policy network from scratch. The success rate on novel tasks after removing the pre-trained LM weights drops by 11.2%.
+		Finally, we investigate (3) by learning the parameters of the policy network from scratch (No-Pretrain). The success rate on novel tasks after removing the pre-trained LM weights drops by 11.2%.
 
 		<br>
 		<div class="center2">
