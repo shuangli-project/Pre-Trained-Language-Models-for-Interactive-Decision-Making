@@ -49,6 +49,18 @@
   margin-right: auto;
   width: 100%;
 }
+.center6 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 35%;
+}
+.center7 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
 </style>
 
 
@@ -150,7 +162,7 @@
 	<div class="container">
 		<hr class="my-4">
 		<h3 id="Abstract" style="padding-top: 80px; margin-top: -80px;">Abstract</h3>
-		Language model (LM) pre-training has proven useful for a wide variety of language processing tasks, but can such pre-training be leveraged for more general machine learning problems? We investigate the effectiveness of language modeling to scaffold learning and generalization in autonomous decision-making. We describe a framework for imitation learning in which goals and observations are represented as a sequence of embeddings, and translated into actions using a policy network initialized with a pre-trained transformer LM. We demonstrate that this framework enables effective combinatorial generalization across different environments, such as VirtualHome and BabyAI. In particular, for test tasks involving novel goals or novel scenes, initializing policies with language models improves task completion rates by 43.6% in VirtualHome. We hypothesize and investigate three possible factors underlying the effectiveness of LM-based policy initialization. We find that sequential representations (vs. fixed-dimensional feature vectors) and the LM objective (not just the transformer architecture) are both important for generalization. Surprisingly, however, the format of the policy inputs encoding (e.g. as a natural language string vs. an arbitrary sequential encoding) has little influence. Together, these results suggest that language modeling induces representations that are useful for modeling not just language, but also goals and plans; these representations can aid learning and generalization even outside of language processing.
+		Language model (LM) pre-training is useful in many language processing tasks. But can pre-trained LMs be further leveraged for more general machine learning problems? We propose an approach for using LMs to scaffold learning and generalization in general sequential decision-making problems. In this approach, goals and observations are represented as a sequence of embeddings, and a policy network initialized with a pre-trained LM predicts the next action. We demonstrate that this framework enables effective combinatorial generalization across different environments and supervisory modalities. We begin by assuming access to a set of expert demonstrations, and show that initializing policies with LMs and fine-tuning them via behavior cloning improves task completion rates by 43.6% in the VirtualHome environment. We then examine how our framework may be used in environments without pre-collected expert data. To do this, we integrate an active data gathering procedure into pre-trained LMs. The agent iteratively learns by interacting with the environment, relabeling the language goal of past ``failed'' experiences, and updating the policy in a self-supervised loop. The active data gathering procedure also enables effective combinatorial generalization, outperforming the best baseline by 25.1%. Finally, we explain these results by investigating three possible factors underlying the effectiveness of the LM-based policy. We find that sequential input representations (vs. fixed-dimensional feature vectors) and favorable weight initialization are both important for generalization. Surprisingly, however, the format of the policy inputs encoding (e.g.\ as a natural language string vs. an arbitrary sequential encoding) has little influence. Together, these results suggest that language modeling induces representations that are useful for modeling not just language, but also goals and plans; these representations can aid learning and generalization even outside of language processing.
 	</div>
 	<br><br>
 	
@@ -194,13 +206,21 @@
 		</div>
 	</div>
 	<br>
-	<!-- <br> -->
-
+	<br>
 
 	<div class="container">
-		<img class="img-responsive img-rounded" src="imgs_new/qualitative.png" style="width:100%; height:100%" alt="">
+		<hr class="my-4">
+		<h3 id="results" style="padding-top: 80px; margin-top: -80px;">More results</h3>
+		<br>
+
+		<b>Qualitative results of our model on VirtualHome and BabyAI.</b> We only show a sub-trajectory in each example to save space. The interacted objects are labelled by green bounding boxes.
+		<img class="img-responsive img-rounded" src="imgs_new/qualitative3.png" style="width:100%; height:100%" alt="">
+
+		<br><br>
 		
-		We show two examples of successes in VirtualHome, two examples of successes in BabyAI, and two failure cases caused by the grounding error and policy error. We only show a sub-trajectory in each example and omit most exploration actions to save space. The interacted objects are labelled by green bounding boxes.
+		<b>Failure cases.</b> We show failure cases caused by the grounding error and policy error. We only show a sub-trajectory in each example and omit most exploration actions to save space. The interacted objects are labelled by green bounding boxes.
+		<img class="img-responsive img-rounded" src="imgs_new/qualitative4.png" style="width:100%; height:100%" alt="">
+
 	</div>
 
 	<br>
@@ -229,6 +249,26 @@
 
 
 		<hr class="my-4">
+		<h3 id="" style="padding-top: 80px; margin-top: -80px;">Learning without pre-collected expert data</h3>
+
+		We further examine how our method may be used in environments, where the expert data is not available and an agent must actively gather data from the surrounding environment. To do this, we integrate an <b>Active Data Gathering (ADG)</b> procedure into pretrained LMs.
+
+		<br><br>
+
+		ADG consists of three parts. First, <b>exploration</b> collects trajectories using a mix of random actions and actions generated by the current policy. Exploration is insufficient in this high dimensional problem and most of the trajectories will likely fail to achieve the end goal. A key insight is that even the failed trajectories contain useful sub-trajectories that solve certain sub-goals, and we relabel their goal in the <b>hindsight relabeling</b> stage. The relabeled goal describes what was achieved in the extracted sub-trajectory. <b>Policy update</b> samples relabeled trajectories to update the policy.
+
+		<br><br>
+
+		<img class="img-responsive img-rounded" src="imgs_new/im_algo8.png" style="width:100%; height:100%" alt="">
+
+		<br><br>
+
+
+
+
+
+
+		<hr class="my-4">
 		<h3 id="Results" style="padding-top: 80px; margin-top: -80px;">Combinatorial generalization to out-of-distribution tasks</h3>
 
 		We find that using pre-trained LMs as policy initializers improves in-domain performance and enables several forms of strong generalization over tasks.
@@ -241,10 +281,31 @@
 		<br><br>
 
 		<div class="center2">
-			<img class="img-responsive img-rounded" src="imgs_new/1baselines.png" style="width:90%; height:100%" alt="">
+			<img class="img-responsive img-rounded" src="imgs_new/1baselines.png" style="width:80%; height:100%" alt="">
 		</div>
 
-		<!-- <br><br> -->
+
+
+
+
+
+
+		<br>
+
+
+
+		<hr class="my-4">
+		<h3 id="Results" style="padding-top: 80px; margin-top: -80px;">Pre-trained Language Model with Active Data Gathering (LID-ADG)</h3>
+
+		We compare LID-ADG, the proposed LM framework for decision-making using actively gathered data, to a variety of baselines that do not use pre-collected expert data on VirtualHome.
+		LID-ADG (Ours) outperforms all the baselines.
+		<br><br>
+
+		<div class="center6">
+			<img class="img-responsive img-rounded" src="imgs_new/adg.png" style="width:100%; height:100%" alt="">
+		</div>
+
+		<br><br>
 		
 
 
@@ -256,7 +317,7 @@
 		We hypothesize and investigate three possible factors underlying the effectiveness of language modeling for generalization in policy learning:
 		(1) input encoding scheme;
 		(2) sequential input representations;
-		and (3) parameter pre-training.
+		and (3) favorable weight initialization.
 
 		<br><br>
 
@@ -266,19 +327,13 @@
 		We investigate (1) by encoding the environment as different types of sequences. Different input encoding schemes have only a negligible impact on model performance: the effectiveness of language modeling is not limited to utilizing natural strings, but in fact extends to arbitrary sequential encodings.
 
 		<br><br>
-		<div class="center2">
-			<img class="img-responsive img-rounded" src="imgs_new/table1.png" style="width:80%; height:100%" alt="">
+		<div class="center6">
+			<img class="img-responsive img-rounded" src="imgs_new/table1.png" style="width:100%" alt="">
 		</div>
 
-		Success rates of policies trained with different input encodings in the Novel Tasks setting of VirtualHome. The text encoding is most sample-efficient, but all models converge to similar performance given sufficient training data.
-
-
-		<br><br>
-
-		<div class="center2">
-			<img class="img-responsive img-rounded" src="imgs_new/table2.png" style="width:80%; height:100%" alt="">
-		</div>
-		Success rate of policies trained with text encoding vs. convolutional encoding in BabyAI. The text encoding is more sample-efficient, but both models converge to near perfect performance given sufficient training data.
+		<br>
+		Success rates of policies trained with different input encodings in the Novel Tasks setting on VirtualHome. The text encoding is most sample-efficient, but all models converge to similar performance given sufficient training data.
+		
 
 		
 		<br><br>
@@ -292,18 +347,20 @@
 		<h4 style="padding-top: 80px; margin-top: -80px;">(3) Parameter pre-training</h4>
 		Finally, we investigate (3) by learning the parameters of the policy network from scratch (No-Pretrain). The success rate on novel tasks after removing the pre-trained LM weights drops by 11.2%.
 
-		<br>
-		<div class="center2">
-			<img class="img-responsive img-rounded" src="imgs_new/2seqinput.png" style="width:80%; height:100%" alt="">
+		<br><br>
+		<div class="center7">
+			<img class="img-responsive img-rounded" src="imgs_new/table3.png" style="width:100%" alt="">
 		</div>
-		"ML-Text (Ours)"" refines a pre-trained LM while "No-Pretrain" learns it from scratch. "No-FineTune" freezes the pre-trained weights. "No-Seq" uses non-sequential inputs. Fine-tuning the pre-trained weights and the usage of sequential encoding are important for combinatorial generalization.
+		<br>
+
+		"LID-Text (Ours)"" refines a pre-trained LM while "No-Pretrain" learns it from scratch. "No-FT" freezes the pre-trained weights. "No-Seq" uses non-sequential inputs. Fine-tuning the pre-trained weights and the usage of sequential encoding are important for combinatorial generalization.
 
 
 
 		<br><br>
 		
+		We find that sequential input representations (vs. fixed-dimensional feature vectors) and favorable weight initialization are both important for generalization, however, the input encoding schemes (e.g. as a natural language string vs. an arbitrary encoding scheme) has little influence.
 
-		We find that sequential representations (vs. fixed-dimensional feature vectors) and the LM objective (not just the transformer architecture) are both important for generalization, however, the input encoding schemes (e.g. as a natural language string vs. an arbitrary encoding scheme) have little influence.
 
 	</div>
 
@@ -337,23 +394,28 @@
 		  <!-- <div class="embed-responsive embed-responsive-16by9"> -->
 		    <!-- <iframe style="border: 1px solid #000;" class="embed-responsive-item" src="imgs_new/vid1.mp4" frameborder="0" allowfullscreen></iframe> -->
 		  <!-- </div> -->
+		  	<br>
 		  	<video width="800" controls playsinline autoplay muted loop class=center4>
 			  <source src="imgs_new/vid1.mp4" type="video/mp4">
 			</video>
 		</div>
 		<br>
+		<br>
 
 
 		<div align="left">
 			<h4 style="padding-top: 80px; margin-top: -80px;">2. Policy with pre-trained Language Model v.s. Policy with LSTM</h4>
+			<br>
 		  	<video width="800" controls playsinline autoplay muted loop class=center4>
 			  <source src="imgs_new/vid2.mp4" type="video/mp4">
 			</video>
 		</div>
 		<br>
+		<br>
 
 		<div align="left">
 			<h4 style="padding-top: 80px; margin-top: -80px;">3. Policy with pre-trained Language Model on different test settings</h4>
+			<br>
 		  	<video width="800" controls playsinline autoplay muted loop class=center4>
 			  <source src="imgs_new/vid3.mp4" type="video/mp4">
 			</video>
